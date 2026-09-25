@@ -1,0 +1,216 @@
+.launch-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.launch {
+  min-height: 100svh;
+  display: flex;
+  align-items: stretch;
+  padding: calc(var(--nav-h) + 28px) 0 clamp(28px, 5vh, 56px);
+}
+
+.launch__grid {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(20px, 4vh, 48px) 24px;
+}
+
+.launch__cell--tl {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: 460px;
+}
+.launch__cell--tr {
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
+  width: min(100%, 320px);
+}
+.launch__cell--bl {
+  grid-column: 1;
+  grid-row: 3;
+  max-width: 440px;
+  align-self: end;
+}
+.launch__cell--br {
+  grid-column: 3;
+  grid-row: 3;
+  justify-self: end;
+  width: min(100%, 340px);
+  align-self: end;
+}
+
+.launch__lead {
+  margin-top: 16px;
+  font-size: 0.98rem;
+}
+
+/* ---------- device profile ---------- */
+.specs__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(95, 216, 164, 0.9);
+}
+.specs__list {
+  margin: 0;
+  padding: 6px 14px 12px;
+}
+.specs__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+}
+.specs__row:last-child {
+  border-bottom: 0;
+}
+.specs__row dt {
+  font-size: 0.78rem;
+  color: var(--text-3);
+}
+.specs__row dd {
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- launch trace ---------- */
+.trace__title {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.24em;
+  color: var(--text-4);
+  margin-bottom: 14px;
+}
+.trace__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.trace__line {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateX(-8px);
+  animation: traceIn 0.6s var(--ease-out) forwards;
+  animation-delay: calc(0.15s + var(--i) * 0.12s);
+}
+@keyframes traceIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.trace__mark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kotlin);
+  box-shadow: 0 0 8px rgba(127, 82, 255, 0.9);
+}
+.trace__code {
+  font-size: 0.76rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.trace__meta {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  color: var(--text-4);
+}
+
+/* ---------- interactive controls ---------- */
+.controls__body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.controls__hint {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--text-3);
+  margin: 0;
+}
+.controls__btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.controls__state {
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: var(--kotlin-soft);
+  text-transform: uppercase;
+}
+
+@media (max-width: 1180px) {
+  .launch__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 250px) minmax(0, 1fr);
+    gap: clamp(18px, 3vh, 36px) 16px;
+  }
+  .launch__cell--tr,
+  .launch__cell--br {
+    width: 100%;
+  }
+  .launch__lead {
+    font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .launch {
+    min-height: auto;
+    padding-bottom: 46vh;
+  }
+  .launch__grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 24px;
+  }
+  .launch__cell--tl,
+  .launch__cell--tr,
+  .launch__cell--bl,
+  .launch__cell--br {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
+    align-self: auto;
+    width: 100%;
+    max-width: none;
+  }
+  .launch__lead {
+    max-width: 56ch;
+  }
+  /* Keep the card stack opaque so the fixed phone never sits behind live text. */
+  .trace {
+    background: linear-gradient(180deg, rgba(18, 19, 26, 0.94), rgba(12, 13, 18, 0.9));
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 16px 18px 18px;
+  }
+  .trace__code {
+    white-space: normal;
+    word-break: break-word;
+  }
+}

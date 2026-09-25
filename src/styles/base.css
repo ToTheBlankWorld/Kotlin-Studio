@@ -1,0 +1,304 @@
+/* ============================================================
+   Design tokens, reset, typography, background texture
+   ============================================================ */
+
+:root {
+  --bg: #08090b;
+  --bg-deep: #050507;
+  --bg-raised: #0d0e12;
+  --panel: rgba(255, 255, 255, 0.028);
+  --panel-2: rgba(255, 255, 255, 0.05);
+  --panel-solid: #0e0f14;
+  --line: rgba(255, 255, 255, 0.075);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  --text: #edeef2;
+  --text-2: #9aa0ad;
+  --text-3: #666c79;
+  --text-4: #464c57;
+
+  --kotlin: #7f52ff;
+  --kotlin-soft: #9d7bff;
+  --magenta: #c711e1;
+  --ember: #ff8a3d;
+  --cyan: #41d4ff;
+  --green: #5fd8a4;
+  --green-dim: #2f7f5f;
+
+  --grad-kotlin: linear-gradient(120deg, #e44857 0%, #c711e1 42%, #7f52ff 78%, #41d4ff 105%);
+
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --nav-h: 68px;
+  --gutter: clamp(20px, 4.5vw, 64px);
+  --maxw: 1360px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --radius: 14px;
+  --radius-lg: 22px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+/* --- ambient background: fine grid + noise + light field --- */
+.bg-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-field::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 130% 90% at 50% 0%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 130% 90% at 50% 0%, #000 0%, transparent 78%);
+}
+
+.bg-field::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 620px at 78% -6%, rgba(127, 82, 255, 0.16), transparent 62%),
+    radial-gradient(760px 520px at 6% 12%, rgba(65, 212, 255, 0.07), transparent 60%),
+    radial-gradient(1000px 700px at 50% 118%, rgba(199, 17, 225, 0.09), transparent 65%);
+}
+
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- typography --- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.03;
+  text-wrap: balance;
+}
+
+.display {
+  font-size: clamp(3rem, 7.4vw, 6.6rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.h2 {
+  font-size: clamp(2.1rem, 4.4vw, 3.9rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+}
+
+.h3 {
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.lead {
+  font-size: clamp(1.02rem, 1.28vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-2);
+  font-weight: 350;
+  max-width: 56ch;
+}
+
+.muted {
+  color: var(--text-2);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-feature-settings: 'ss01' 1;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--kotlin));
+}
+
+.grad-text {
+  background: var(--grad-kotlin);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--kotlin-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(127, 82, 255, 0.35);
+  color: #fff;
+}
+
+/* --- scrollbars --- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: #23252c;
+  border-radius: 8px;
+  border: 2px solid var(--bg-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #33363f;
+}
+
+/* --- shared layout --- */
+.shell {
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  position: relative;
+  padding: clamp(90px, 13vh, 170px) var(--gutter);
+  z-index: 2;
+}
+
+.section__inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  position: relative;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(20px, 2.4vw, 34px);
+}
+
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong) 18%, var(--line-strong) 82%, transparent);
+  border: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 3D canvas layer */
+.canvas-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.canvas-layer canvas {
+  pointer-events: auto;
+}
+
+/* --- reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

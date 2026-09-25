@@ -1,0 +1,217 @@
+.path-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.path {
+  padding: clamp(90px, 13vh, 150px) var(--gutter);
+}
+
+.path__layout {
+  display: grid;
+  grid-template-columns: 268px minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 72px);
+  margin-top: clamp(32px, 5vh, 58px);
+  align-items: start;
+}
+
+.path__aside {
+  position: relative;
+}
+.path__sticky {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.path__meter .panel__bar {
+  border-bottom: 0;
+}
+.path__pct {
+  color: var(--kotlin-soft);
+}
+.path__track {
+  height: 5px;
+  margin: 4px 14px 0;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 100px;
+  overflow: hidden;
+}
+.path__track > span {
+  display: block;
+  height: 100%;
+  transform-origin: 50% 0;
+  background: var(--grad-kotlin);
+  transition: transform 0.25s linear;
+}
+.path__count {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 14px;
+}
+.path__count strong {
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+.path__count span {
+  font-size: 0.76rem;
+  color: var(--text-4);
+}
+
+.path__filters-label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  margin-bottom: 12px;
+}
+.path__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.path__chips .chipbtn {
+  padding: 6px 11px;
+  font-size: 0.6rem;
+}
+
+/* ---------- timeline ---------- */
+.path__list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 34px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.path__list::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 18px;
+  bottom: 18px;
+  width: 1.5px;
+  background: var(--line-strong);
+}
+.path__list::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 18px;
+  bottom: 18px;
+  width: 1.5px;
+  background: linear-gradient(180deg, var(--kotlin), var(--cyan));
+  transform-origin: 50% 0;
+  transform: scaleY(var(--fill, 0));
+  transition: transform 0.3s linear;
+}
+
+.path__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: opacity 0.4s ease, background 0.4s ease, border-color 0.4s ease,
+    transform 0.4s var(--ease-out);
+}
+.path__step.is-reached {
+  background: rgba(255, 255, 255, 0.028);
+  border-color: var(--line);
+}
+.path__step.is-reached:hover {
+  border-color: rgba(157, 123, 255, 0.45);
+  transform: translateX(4px);
+}
+.path__step.is-dim {
+  opacity: 0.3;
+}
+
+.path__node {
+  position: absolute;
+  left: -34px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -5.5px;
+  margin-left: 1.5px;
+  border-radius: 50%;
+  background: var(--bg-raised);
+  border: 1.5px solid var(--line-strong);
+  transition: all 0.4s var(--ease-out);
+}
+.path__step.is-reached .path__node {
+  background: var(--kotlin);
+  border-color: var(--kotlin-soft);
+  box-shadow: 0 0 0 5px rgba(127, 82, 255, 0.16);
+}
+
+.path__n {
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--text-4);
+  transition: color 0.35s ease;
+}
+.path__step.is-reached .path__n {
+  color: var(--kotlin-soft);
+}
+.path__body {
+  min-width: 0;
+}
+.path__title {
+  font-size: clamp(1rem, 1.35vw, 1.18rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 5px;
+}
+.path__blurb {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+.path__tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 5px 11px;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .path__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .path__sticky {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .path__meter {
+    flex: 1;
+    min-width: 220px;
+  }
+  .path__step {
+    grid-template-columns: 36px minmax(0, 1fr);
+    padding: 16px 14px;
+    gap: 12px;
+  }
+  .path__tag {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

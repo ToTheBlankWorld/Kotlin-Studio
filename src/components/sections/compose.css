@@ -1,0 +1,203 @@
+.compose-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.compose {
+  padding: clamp(90px, 14vh, 160px) var(--gutter);
+}
+
+.compose__layout {
+  width: min(100%, 62vw);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 216px;
+  gap: 24px;
+  align-items: start;
+  margin-top: clamp(30px, 5vh, 58px);
+}
+.compose__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.compose__recs {
+  font-size: 0.56rem;
+  color: var(--kotlin-soft);
+}
+
+/* ---------- fields ---------- */
+.cfield {
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.cfield--last {
+  border-bottom: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.cfield__label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+.cfield__row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.cfield__name {
+  font-size: 0.78rem;
+  color: var(--text-3);
+  margin-right: 8px;
+}
+.cfield__note {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  color: var(--text-4);
+}
+
+.cinput {
+  flex: 1;
+  min-width: 140px;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid var(--line-strong);
+  border-radius: 9px;
+  padding: 10px 13px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.cinput:focus {
+  border-color: var(--kotlin-soft);
+  box-shadow: 0 0 0 3px rgba(127, 82, 255, 0.18);
+}
+
+/* ---------- switch ---------- */
+.switch {
+  position: relative;
+  width: 42px;
+  height: 23px;
+  border-radius: 100px;
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  flex: none;
+  transition: background 0.32s var(--ease-out), border-color 0.32s ease;
+}
+.switch__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #cfd3de;
+  transition: transform 0.32s var(--ease-out), background 0.32s ease;
+}
+.switch.is-on {
+  background: linear-gradient(180deg, rgba(127, 82, 255, 0.85), rgba(127, 82, 255, 0.55));
+  border-color: var(--kotlin-soft);
+}
+.switch.is-on .switch__knob {
+  transform: translateX(19px);
+  background: #fff;
+}
+
+/* ---------- swatches ---------- */
+.swatches {
+  display: flex;
+  gap: 10px;
+}
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+.swatch:hover {
+  transform: translateY(-2px);
+}
+.swatch.is-on {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14), 0 10px 24px -12px currentColor;
+  transform: translateY(-2px);
+}
+
+/* ---------- live code ---------- */
+.compose__code {
+  margin: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(6, 7, 10, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  color: var(--text-2);
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+/* ---------- side notes ---------- */
+.compose__side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 4px;
+}
+.sidenote {
+  border-left: 2px solid rgba(127, 82, 255, 0.5);
+  padding-left: 13px;
+}
+.sidenote__k {
+  display: block;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kotlin-soft);
+  margin-bottom: 7px;
+}
+.sidenote p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-3);
+}
+
+@media (max-width: 1180px) {
+  .compose__layout {
+    width: min(100%, 58vw);
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .compose__side {
+    flex-direction: row;
+    gap: 22px;
+  }
+  .sidenote {
+    flex: 1;
+  }
+}
+
+@media (max-width: 880px) {
+  .compose__layout {
+    width: 100%;
+  }
+  .compose__side {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,160 @@
+.features-wrap {
+  position: relative;
+  z-index: 2;
+}
+
+.features {
+  padding: clamp(90px, 13vh, 150px) var(--gutter);
+}
+
+.fgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: clamp(32px, 5vh, 60px);
+}
+
+.fcard {
+  position: relative;
+  grid-column: span 1;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: border-color 0.35s ease, background 0.35s ease;
+}
+.fcard:hover {
+  border-color: rgba(157, 123, 255, 0.42);
+}
+.fcard.is-open {
+  grid-column: 1 / -1;
+  background:
+    radial-gradient(700px 220px at 12% 0%, rgba(127, 82, 255, 0.13), transparent 70%),
+    rgba(255, 255, 255, 0.035);
+  border-color: rgba(157, 123, 255, 0.5);
+}
+
+.fcard__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 20px 22px;
+  background: none;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+.fcard__idx {
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  color: var(--text-4);
+  flex: none;
+  transition: color 0.3s ease;
+}
+.fcard.is-open .fcard__idx,
+.fcard:hover .fcard__idx {
+  color: var(--kotlin-soft);
+}
+.fcard__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.fcard__title {
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+.fcard__sub {
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+.fcard__plus {
+  margin-left: auto;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.fcard__plus i {
+  position: absolute;
+  background: var(--text-3);
+  transition: transform 0.4s var(--ease-out), background 0.3s ease;
+}
+.fcard__plus i:first-child {
+  left: 0;
+  top: 7.5px;
+  width: 16px;
+  height: 1.5px;
+}
+.fcard__plus i:last-child {
+  top: 0;
+  left: 7.5px;
+  width: 1.5px;
+  height: 16px;
+}
+.fcard.is-open .fcard__plus i:first-child {
+  transform: rotate(180deg);
+}
+.fcard.is-open .fcard__plus i:last-child {
+  transform: scaleY(0);
+}
+.fcard.is-open .fcard__plus i {
+  background: var(--kotlin-soft);
+}
+
+.fcard__body {
+  overflow: hidden;
+}
+.fcard__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(22px, 4vw, 54px);
+  padding: 4px 22px 26px;
+  align-items: start;
+}
+.fcard__body-text {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.72;
+  color: var(--text-2);
+  max-width: 52ch;
+}
+.fcard__code {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(6, 7, 10, 0.9);
+  padding: 18px 20px;
+  overflow-x: auto;
+}
+
+.features__foot {
+  margin-top: 26px;
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-4);
+}
+
+@media (max-width: 1080px) {
+  .fgrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .fcard__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .fgrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
