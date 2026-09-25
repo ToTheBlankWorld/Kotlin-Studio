@@ -5,14 +5,14 @@ export const SW = 640;
 export const SH = 1408;
 
 const C = {
-  bg: '#0a0b10',
-  bgAlt: '#0d0f15',
-  surface: '#151821',
-  surface2: '#1c2029',
+  bg: '#0b0b0c',
+  bgAlt: '#0e0e0f',
+  surface: '#161617',
+  surface2: '#1e1e20',
   line: 'rgba(255,255,255,0.07)',
-  text: '#eef0f5',
-  text2: '#98a0b0',
-  text3: '#5f6779',
+  text: '#ecebe8',
+  text2: '#9b9b9d',
+  text3: '#66666a',
   accent: '#7f52ff',
   cyan: '#41d4ff',
   green: '#5fd8a4',
@@ -246,16 +246,12 @@ function drawBuilds(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
   // ---- hero status card
   const hy = 206;
   const hg = vGrad(ctx, 0, hy, 170, [
-    [0, '#181b27'],
-    [1, '#101219'],
+    [0, '#1a1a1c'],
+    [1, '#121213'],
   ]);
   fillRR(ctx, PAD, hy, W, 170, 26, hg);
   rr(ctx, PAD, hy, W, 170, 26);
-  ctx.strokeStyle = hGrad(ctx, PAD, W, [
-    [0, 'rgba(127,82,255,0.65)'],
-    [0.5, 'rgba(199,17,225,0.4)'],
-    [1, 'rgba(65,212,255,0.35)'],
-  ]);
+  ctx.strokeStyle = 'rgba(127,82,255,0.5)';
   ctx.lineWidth = 1.6;
   ctx.stroke();
 
@@ -330,7 +326,7 @@ function drawBuilds(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
   area.lineTo(pts[0].x, gy1 + 4);
   area.closePath();
   const ag = ctx.createLinearGradient(0, gy0, 0, gy1);
-  ag.addColorStop(0, 'rgba(127,82,255,0.42)');
+  ag.addColorStop(0, 'rgba(127,82,255,0.3)');
   ag.addColorStop(1, 'rgba(127,82,255,0)');
   ctx.fillStyle = ag;
   ctx.fill(area);
@@ -345,9 +341,9 @@ function drawBuilds(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
     const last = i === pts.length - 1;
     ctx.beginPath();
     ctx.arc(p.x, p.y, last ? 7 : 4.5, 0, Math.PI * 2);
-    ctx.fillStyle = last ? C.cyan : '#0d0f15';
+    ctx.fillStyle = last ? C.green : '#0e0e0f';
     ctx.fill();
-    ctx.strokeStyle = last ? C.cyan : '#9d7bff';
+    ctx.strokeStyle = last ? C.green : '#9d7bff';
     ctx.lineWidth = 3;
     ctx.stroke();
   });
@@ -406,9 +402,9 @@ function drawBuilds(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
   // ---- FAB
   const fy = 1168;
   ctx.save();
-  ctx.shadowColor = 'rgba(127,82,255,0.55)';
-  ctx.shadowBlur = 26;
-  fillRR(ctx, SW - 118, fy, 84, 84, 28, hGrad(ctx, SW - 118, 84, [[0, '#8a5cff'], [1, '#6a3df0']]));
+  ctx.shadowColor = 'rgba(0,0,0,0.5)';
+  ctx.shadowBlur = 16;
+  fillRR(ctx, SW - 118, fy, 84, 84, 28, '#7a4ff5');
   ctx.restore();
   ctx.fillStyle = '#fff';
   ctx.beginPath();
@@ -440,7 +436,7 @@ function drawInsights(ctx: CanvasRenderingContext2D, _s: AppState, local: number
     const t = Math.min(1, Math.max(0, (local - i * 0.05) / 0.6));
     const h = (v / 100) * 190 * (1 - Math.pow(1 - t, 3));
     const g = ctx.createLinearGradient(0, baseY - h, 0, baseY);
-    g.addColorStop(0, i === bars.length - 2 ? C.cyan : 'rgba(127,82,255,0.95)');
+    g.addColorStop(0, 'rgba(127,82,255,0.9)');
     g.addColorStop(1, 'rgba(127,82,255,0.18)');
     fillRR(ctx, x, baseY - h, bw, Math.max(4, h), 10, g);
   });
@@ -454,7 +450,7 @@ function drawInsights(ctx: CanvasRenderingContext2D, _s: AppState, local: number
   const tw = (W - 20) / 2;
   const tiles = [
     { label: 'Crash-free', value: '99.4%', col: C.green },
-    { label: 'Cold start', value: '380 ms', col: C.cyan },
+    { label: 'Cold start', value: '380 ms', col: C.accent },
   ];
   tiles.forEach((t, i) => {
     const x = PAD + i * (tw + 20);
@@ -473,9 +469,9 @@ function drawInsights(ctx: CanvasRenderingContext2D, _s: AppState, local: number
 
   const legend = [
     { k: 'classes.dex', v: 1.8, c: C.accent },
-    { k: 'resources.arsc', v: 0.9, c: C.cyan },
-    { k: 'lib/**.so', v: 0.7, c: C.ember },
-    { k: 'other', v: 0.8, c: '#3d4351' },
+    { k: 'resources.arsc', v: 0.9, c: '#9b9b9d' },
+    { k: 'lib/**.so', v: 0.7, c: '#66666a' },
+    { k: 'other', v: 0.8, c: '#3d3d42' },
   ];
   const total = legend.reduce((a, b) => a + b.v, 0);
   let acc = 0;
@@ -535,7 +531,7 @@ function drawRun(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
     const start = -Math.PI / 2;
     ctx.beginPath();
     ctx.arc(cxx, cyy, R, start, start + Math.PI * 2 * p);
-    ctx.strokeStyle = done ? C.green : hGrad(ctx, cxx - R, R * 2, [[0, C.cyan], [1, C.accent]]);
+    ctx.strokeStyle = done ? C.green : C.accent;
     ctx.lineWidth = 22;
     ctx.lineCap = 'round';
     ctx.stroke();
@@ -637,9 +633,9 @@ function drawRun(ctx: CanvasRenderingContext2D, s: AppState, local: number) {
 
 function drawLauncher(ctx: CanvasRenderingContext2D, local: number) {
   const g = ctx.createLinearGradient(0, 0, SW, SH);
-  g.addColorStop(0, '#16121f');
-  g.addColorStop(0.5, '#0d1018');
-  g.addColorStop(1, '#101724');
+  g.addColorStop(0, '#141416');
+  g.addColorStop(0.5, '#0d0d0e');
+  g.addColorStop(1, '#101012');
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, SW, SH);
 
@@ -650,9 +646,8 @@ function drawLauncher(ctx: CanvasRenderingContext2D, local: number) {
     ctx.fillStyle = rg;
     ctx.fillRect(x - r, y - r, r * 2, r * 2);
   };
-  blob(140, 260, 320, 'rgba(127,82,255,A)', 0.55);
-  blob(520, 980, 340, 'rgba(65,212,255,A)', 0.3);
-  blob(430, 420, 240, 'rgba(199,17,225,A)', 0.28);
+  blob(140, 260, 320, 'rgba(255,255,255,A)', 0.05);
+  blob(520, 980, 340, 'rgba(255,255,255,A)', 0.03);
 
   statusBar(ctx, '#ffffff');
 
@@ -729,7 +724,7 @@ function drawInstall(ctx: CanvasRenderingContext2D, s: AppState, local: number) 
   const by = 700;
   fillRR(ctx, bx, by, bw, 14, 7, 'rgba(255,255,255,0.09)');
   const w = bw * Math.min(1, p);
-  if (w > 14) fillRR(ctx, bx, by, w, 14, 7, hGrad(ctx, bx, bw, [[0, C.accent], [1, C.cyan]]));
+  if (w > 14) fillRR(ctx, bx, by, w, 14, 7, C.accent);
 
   if (!done) {
     text(ctx, 'Installing…', SW / 2, by + 74, `500 27px ${SANS}`, C.text2, 'center');

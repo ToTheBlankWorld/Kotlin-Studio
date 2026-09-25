@@ -73,9 +73,9 @@ export function createStudioCanvas(w = 1024, h = 512): HTMLCanvasElement {
   const ctx = c.getContext('2d')!;
 
   const bg = ctx.createLinearGradient(0, 0, 0, h);
-  bg.addColorStop(0, '#1b1f2a');
-  bg.addColorStop(0.45, '#0c0e13');
-  bg.addColorStop(1, '#040406');
+  bg.addColorStop(0, '#191a1d');
+  bg.addColorStop(0.45, '#0b0b0c');
+  bg.addColorStop(1, '#040404');
   ctx.fillStyle = bg;
   ctx.fillRect(0, 0, w, h);
 
@@ -104,13 +104,13 @@ export function createStudioCanvas(w = 1024, h = 512): HTMLCanvasElement {
   // key softbox (front-top)
   strip(w * 0.3, h * 0.2, 260, 120, 'rgb(255,255,255)', 1);
   // fill
-  strip(w * 0.72, h * 0.3, 300, 150, 'rgb(214,224,255)', 0.75);
-  // purple rim
-  strip(w * 0.9, h * 0.55, 220, 260, 'rgb(150,110,255)', 0.8);
-  // warm rim
-  strip(w * 0.08, h * 0.6, 200, 240, 'rgb(255,150,90)', 0.5);
+  strip(w * 0.72, h * 0.3, 300, 150, 'rgb(224,226,232)', 0.7);
+  // cool rim
+  strip(w * 0.9, h * 0.55, 220, 260, 'rgb(186,188,196)', 0.6);
+  // soft edge
+  strip(w * 0.08, h * 0.6, 200, 240, 'rgb(164,164,170)', 0.45);
   // floor bounce
-  strip(w * 0.5, h * 0.92, 420, 120, 'rgb(90,110,180)', 0.4);
+  strip(w * 0.5, h * 0.92, 420, 120, 'rgb(112,112,122)', 0.4);
 
   return c;
 }

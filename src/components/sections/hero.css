@@ -67,9 +67,9 @@
   padding: 16px 18px 18px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: rgba(10, 11, 15, 0.66);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(10, 10, 11, 0.8);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .telemetry__head {
   display: block;
@@ -113,7 +113,7 @@
   bottom: 30px;
   width: 44px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(157, 123, 255, 0.75));
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45));
 }
 
 .hero__scroll {
@@ -138,7 +138,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, var(--kotlin-soft), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
   animation: scrollSweep 2.4s var(--ease-io) infinite;
 }
 @keyframes scrollSweep {

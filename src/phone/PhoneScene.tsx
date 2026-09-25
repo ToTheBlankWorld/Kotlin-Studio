@@ -69,8 +69,8 @@ function StudioEnv() {
 function Lights({ shadows }: { shadows: boolean }) {
   return (
     <>
-      <ambientLight intensity={0.22} />
-      <hemisphereLight args={['#c8d4ff', '#06060a', 0.42]} />
+      <ambientLight intensity={0.24} />
+      <hemisphereLight args={['#dfe2e8', '#070707', 0.42]} />
       <directionalLight
         position={[2.6, 6.8, 3.9]}
         intensity={2.5}
@@ -86,9 +86,9 @@ function Lights({ shadows }: { shadows: boolean }) {
         shadow-bias={-0.0012}
         shadow-normalBias={0.02}
       />
-      <directionalLight position={[-4.4, 1.4, -2.4]} intensity={1.85} color="#8b5cff" />
-      <directionalLight position={[4.6, -1.6, -3.2]} intensity={1.15} color="#ff8a3d" />
-      <pointLight position={[0, 0.1, 1.8]} intensity={1.35} color="#9db2ff" distance={7} decay={2} />
+      <directionalLight position={[-4.4, 1.4, -2.4]} intensity={1.5} color="#d9d0ff" />
+      <directionalLight position={[4.6, -1.6, -3.2]} intensity={0.85} color="#eceef2" />
+      <pointLight position={[0, 0.1, 1.8]} intensity={1.1} color="#eef0f5" distance={7} decay={2} />
     </>
   );
 }
@@ -110,7 +110,7 @@ function Particles({ count, reduced }: { count: number; reduced: boolean }) {
   const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const palette = [new THREE.Color('#7f52ff'), new THREE.Color('#41d4ff'), new THREE.Color('#ff8a3d'), new THREE.Color('#ffffff')];
+    const palette = [new THREE.Color('#e8e8ee'), new THREE.Color('#b0b0ba'), new THREE.Color('#7c7c86')];
     for (let i = 0; i < count; i++) {
       const r = 2.4 + Math.random() * 3.6;
       const theta = Math.random() * Math.PI * 2;
@@ -152,7 +152,7 @@ function Particles({ count, reduced }: { count: number; reduced: boolean }) {
         size={0.036}
         map={tex}
         transparent
-        opacity={0.7}
+        opacity={0.55}
         depthWrite={false}
         sizeAttenuation
         vertexColors
@@ -165,7 +165,7 @@ function Particles({ count, reduced }: { count: number; reduced: boolean }) {
 
 function Halo() {
   const tex = useMemo(() => {
-    const t = new THREE.CanvasTexture(createGlowTexture(256, '140,100,255'));
+    const t = new THREE.CanvasTexture(createGlowTexture(256, '150,150,158'));
     t.colorSpace = THREE.SRGBColorSpace;
     return t;
   }, []);
@@ -177,7 +177,7 @@ function Halo() {
       <meshBasicMaterial
         map={tex}
         transparent
-        opacity={0.55}
+        opacity={0.3}
         depthWrite={false}
         blending={THREE.AdditiveBlending}
         toneMapped={false}
@@ -255,7 +255,7 @@ function ScreenSurface({
   return (
     <mesh ref={meshRef} position={[0, 0, PHONE.d / 2 + 0.0015]}>
       <planeGeometry args={[w, h]} />
-      <meshBasicMaterial map={texture} color="#e9edf5" toneMapped={false} />
+      <meshBasicMaterial map={texture} color="#ececea" toneMapped={false} />
     </mesh>
   );
 }
@@ -309,7 +309,7 @@ function PhoneModel({
       {/* chassis */}
       <mesh geometry={geos.body} castShadow={shadows} receiveShadow={shadows}>
         <meshPhysicalMaterial
-          color="#24262d"
+          color="#242427"
           metalness={0.92}
           roughness={0.31}
           clearcoat={0.6}
@@ -321,7 +321,7 @@ function PhoneModel({
       {/* back glass */}
       <mesh geometry={geos.back} position={[0, 0, -PHONE.d / 2 - 0.0015]} rotation-y={Math.PI}>
         <meshPhysicalMaterial
-          color="#0d0e13"
+          color="#0e0e10"
           metalness={0.35}
           roughness={0.16}
           clearcoat={1}
@@ -333,7 +333,7 @@ function PhoneModel({
       {/* camera island */}
       <group position={[-0.19, 0.5, -PHONE.d / 2 - 0.02]} rotation-y={Math.PI}>
         <mesh geometry={geos.plate} castShadow={shadows}>
-          <meshPhysicalMaterial color="#171922" metalness={0.7} roughness={0.3} envMapIntensity={1.2} />
+          <meshPhysicalMaterial color="#17171a" metalness={0.7} roughness={0.3} envMapIntensity={1.2} />
         </mesh>
         {[
           [-0.06, 0.1],
@@ -341,16 +341,16 @@ function PhoneModel({
         ].map(([x, y], i) => (
           <group key={i} position={[x, y, -0.022]} rotation-x={Math.PI / 2}>
             <mesh geometry={lensOuter}>
-              <meshStandardMaterial color="#0a0b10" metalness={0.95} roughness={0.22} envMapIntensity={1.6} />
+              <meshStandardMaterial color="#0a0a0b" metalness={0.95} roughness={0.22} envMapIntensity={1.6} />
             </mesh>
             <mesh geometry={lensGlass} position={[0, 0.014, 0]} scale={[1, 0.42, 1]}>
-              <meshPhysicalMaterial color="#05060c" metalness={0.2} roughness={0.05} clearcoat={1} envMapIntensity={2.4} />
+              <meshPhysicalMaterial color="#050506" metalness={0.2} roughness={0.05} clearcoat={1} envMapIntensity={2.4} />
             </mesh>
           </group>
         ))}
         <mesh position={[0.07, 0.11, -0.018]} rotation-x={Math.PI / 2}>
           <cylinderGeometry args={[0.024, 0.024, 0.014, 24]} />
-          <meshStandardMaterial color="#3a3d47" metalness={0.6} roughness={0.4} />
+          <meshStandardMaterial color="#3a3a3e" metalness={0.6} roughness={0.4} />
         </mesh>
       </group>
 
@@ -361,7 +361,7 @@ function PhoneModel({
         rotation-y={Math.PI / 2}
         castShadow={shadows}
       >
-        <meshStandardMaterial color="#2c2f37" metalness={0.95} roughness={0.25} envMapIntensity={1.4} />
+        <meshStandardMaterial color="#2c2c30" metalness={0.95} roughness={0.25} envMapIntensity={1.4} />
       </mesh>
       <mesh
         geometry={geos.buttonLong}
@@ -369,7 +369,7 @@ function PhoneModel({
         rotation-y={Math.PI / 2}
         castShadow={shadows}
       >
-        <meshStandardMaterial color="#2c2f37" metalness={0.95} roughness={0.25} envMapIntensity={1.4} />
+        <meshStandardMaterial color="#2c2c30" metalness={0.95} roughness={0.25} envMapIntensity={1.4} />
       </mesh>
 
       {/* screen */}

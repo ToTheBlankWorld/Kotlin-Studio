@@ -122,7 +122,7 @@
   height: 6px;
   border-radius: 50%;
   background: var(--kotlin);
-  box-shadow: 0 0 8px rgba(127, 82, 255, 0.9);
+  box-shadow: 0 0 6px rgba(127, 82, 255, 0.55);
 }
 .trace__code {
   font-size: 0.76rem;
@@ -202,11 +202,11 @@
   }
   /* Keep the card stack opaque so the fixed phone never sits behind live text. */
   .trace {
-    background: linear-gradient(180deg, rgba(18, 19, 26, 0.94), rgba(12, 13, 18, 0.9));
+    background: rgba(14, 14, 15, 0.96);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     padding: 16px 18px 18px;
   }
   .trace__code {

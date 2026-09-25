@@ -96,8 +96,8 @@
 .cmp__code-inline {
   font-family: var(--font-mono);
   font-size: 0.85em;
-  color: var(--cyan);
-  background: rgba(65, 212, 255, 0.09);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
   padding: 1px 5px;
   border-radius: 4px;
 }

@@ -3,19 +3,19 @@
    ============================================================ */
 
 :root {
-  --bg: #08090b;
-  --bg-deep: #050507;
-  --bg-raised: #0d0e12;
+  --bg: #090909;
+  --bg-deep: #060606;
+  --bg-raised: #101011;
   --panel: rgba(255, 255, 255, 0.028);
   --panel-2: rgba(255, 255, 255, 0.05);
-  --panel-solid: #0e0f14;
+  --panel-solid: #111112;
   --line: rgba(255, 255, 255, 0.075);
   --line-strong: rgba(255, 255, 255, 0.14);
 
-  --text: #edeef2;
-  --text-2: #9aa0ad;
-  --text-3: #666c79;
-  --text-4: #464c57;
+  --text: #ecebe8;
+  --text-2: #9b9b9d;
+  --text-3: #6b6b6e;
+  --text-4: #4a4a4d;
 
   --kotlin: #7f52ff;
   --kotlin-soft: #9d7bff;
@@ -25,7 +25,7 @@
   --green: #5fd8a4;
   --green-dim: #2f7f5f;
 
-  --grad-kotlin: linear-gradient(120deg, #e44857 0%, #c711e1 42%, #7f52ff 78%, #41d4ff 105%);
+  --grad-kotlin: linear-gradient(120deg, #9d7bff 0%, #7f52ff 55%, #6d47e8 100%);
 
   --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
@@ -102,9 +102,9 @@ body.nav-open {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(900px 620px at 78% -6%, rgba(127, 82, 255, 0.16), transparent 62%),
-    radial-gradient(760px 520px at 6% 12%, rgba(65, 212, 255, 0.07), transparent 60%),
-    radial-gradient(1000px 700px at 50% 118%, rgba(199, 17, 225, 0.09), transparent 65%);
+    radial-gradient(900px 620px at 78% -6%, rgba(255, 255, 255, 0.05), transparent 62%),
+    radial-gradient(760px 520px at 6% 12%, rgba(255, 255, 255, 0.026), transparent 60%),
+    radial-gradient(1000px 700px at 50% 118%, rgba(255, 255, 255, 0.02), transparent 65%);
 }
 
 .noise {

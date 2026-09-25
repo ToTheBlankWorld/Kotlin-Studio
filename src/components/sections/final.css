@@ -25,7 +25,7 @@
   line-height: 0.98;
   letter-spacing: -0.045em;
   font-weight: 600;
-  background: linear-gradient(180deg, #fff 25%, #b9b4d6 100%);
+  background: linear-gradient(180deg, #fff 25%, #cbc9c2 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -71,9 +71,9 @@
   position: relative;
   z-index: 2;
   border-top: 1px solid var(--line);
-  background: linear-gradient(180deg, rgba(8, 9, 12, 0.72), var(--bg) 55%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.72), var(--bg) 55%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: clamp(52px, 8vh, 92px) 0 0;
 }
 .footer__inner {
@@ -102,8 +102,8 @@
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: linear-gradient(150deg, var(--kotlin), var(--cyan));
-  color: #07070b;
+  background: var(--kotlin);
+  color: #fff;
   font-weight: 800;
   font-size: 0.92rem;
 }

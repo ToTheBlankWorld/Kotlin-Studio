@@ -41,7 +41,7 @@
 .concept-row.is-active {
   color: var(--text);
   padding-left: 18px;
-  background: linear-gradient(90deg, rgba(127, 82, 255, 0.1), transparent 65%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent 65%);
 }
 .concept-row.is-active::before {
   transform: scaleY(1);
@@ -79,10 +79,10 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(600px 240px at 80% -10%, rgba(127, 82, 255, 0.12), transparent 70%),
+    radial-gradient(600px 240px at 80% -10%, rgba(255, 255, 255, 0.05), transparent 70%),
     rgba(255, 255, 255, 0.024);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   min-height: 480px;
 }
 

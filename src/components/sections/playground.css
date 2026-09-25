@@ -47,15 +47,15 @@
   position: relative;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: rgba(9, 10, 14, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(11, 11, 12, 0.96);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   overflow: hidden;
   transition: border-color 0.4s ease, box-shadow 0.5s ease;
 }
 .ide[data-running='true'] {
   border-color: rgba(127, 82, 255, 0.55);
-  box-shadow: 0 0 0 1px rgba(127, 82, 255, 0.2), 0 30px 70px -40px rgba(127, 82, 255, 0.9);
+  box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.9);
 }
 .ide__bar {
   display: flex;
@@ -104,13 +104,13 @@
   gap: 8px;
   padding: 8px 18px;
   border-radius: 9px;
-  background: linear-gradient(180deg, #8f66ff, #6b3df0);
+  background: #7a4ff5;
   color: #fff;
   font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.14em;
   font-weight: 600;
-  box-shadow: 0 8px 24px -12px rgba(127, 82, 255, 1);
+  box-shadow: 0 8px 24px -14px rgba(0, 0, 0, 0.75);
   transition: transform 0.3s var(--ease-out), filter 0.3s ease, opacity 0.3s ease;
 }
 .ide__run:hover:not(:disabled) {
@@ -193,10 +193,10 @@
   border-radius: 16px;
   flex-wrap: wrap;
   background:
-    radial-gradient(400px 120px at 10% 0%, rgba(127, 82, 255, 0.16), transparent 70%),
+    radial-gradient(400px 120px at 10% 0%, rgba(255, 255, 255, 0.05), transparent 70%),
     rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .apk-card__meta {
   display: flex;
@@ -346,7 +346,7 @@
   background: rgba(95, 216, 164, 0.5);
 }
 .step--now::before {
-  background: linear-gradient(180deg, rgba(95, 216, 164, 0.5), var(--kotlin));
+  background: var(--kotlin);
 }
 .step--now::after {
   background: var(--line-strong);
